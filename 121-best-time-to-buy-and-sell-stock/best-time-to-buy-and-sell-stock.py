@@ -5,17 +5,16 @@ class Solution(object):
         :rtype: int
         """
 
-        max_profit = 0
+        L = 0
+        R = 1
+        maxP = 0
 
-        min_price = prices[0]
-        
-        for price in prices:
-            min_price=min_price if min_price<=price else price
-            max_profit=max_profit if max_profit>=price-min_price else price-min_price
+        while R < len(prices):
+            if prices[L] < prices[R]:
+                profit = prices[R] - prices[L]
+                maxP = max(maxP, profit)
+            else:
+                L = R
+            R+=1
 
-
-        return max_profit
-
-
-
-        
+        return maxP
